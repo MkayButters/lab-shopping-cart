@@ -19,10 +19,31 @@ function renderCart() {
 }
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
-function clearCart() {}
+function clearCart() {
+  document.getElementById('tbody').deleteRow('tr')
+}
+
 
 // TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
+  // localStorage.getItem('items')
+  // var cartTable = document.getElementById('cart')
+  // if (localStorage.) {
+  var allItemsString = localStorage.getItem('items');
+  var allItemsData = JSON.parse(allItemsString);
+  for (var i = 0; i < Cart.length; i++) {
+  var tr = document.createElement('tr');
+  var deleteLink = document.createElement('td');
+  var deleteQuantity = document.createElement('td');
+  var deleteItem = document.createElement('td');
+  tr.appendChild(deleteItem);
+  tr.appendChild(deleteQuantity);
+  tr.appendChild(deleteLink);
+  allItemsData.appendChild(tr);
+ }
+}
+
+
 
   // TODO: Find the table body
 
@@ -31,9 +52,14 @@ function showCart() {
   // TODO: Create a TD for the delete link, quantity,  and the item
   // TODO: Add the TR to the TBODY and each of the TD's to the TR
 
-}
+
 
 function removeItemFromCart(event) {
+  var deleteItem = event.cart.removeItem('click');
+  var table = document.getElementById('cart');
+  localStorage.setItem('cart', JSON.stringify(table));
+  table.innerHTML = "";
+  table.render();
 
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
   // TODO: Save the cart back to local storage
